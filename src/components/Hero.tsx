@@ -55,7 +55,7 @@ const Hero = () => {
                         className="relative max-w-5xl mx-auto aspect-video rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group"
                     >
                         <video
-                            src="/videos/hero-video.mp4"
+                            src="/assets/videos/hero-video.mp4"
                             className="w-full h-full object-cover"
                             controls
                             poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
