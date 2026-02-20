@@ -31,3 +31,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large Media (Videos/Images) - Hostinger par manually upload karenge
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.mkv
+*.webm
