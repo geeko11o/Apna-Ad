@@ -47,31 +47,24 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    {/* Video Placeholder */}
+                    {/* Video Section */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.4, duration: 1 }}
-                        className="relative max-w-5xl mx-auto aspect-video rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group cursor-pointer"
+                        className="relative max-w-5xl mx-auto aspect-video rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent z-10" />
-                        <img
-                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
-                            alt="Dashboard Proof"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center z-20">
-                            <div className="w-16 h-16 md:w-24 md:h-24 bg-brand-yellow rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(250,204,21,0.5)] group-hover:scale-110 transition-transform active:scale-95 duration-500">
-                                <Play className="fill-black w-6 h-6 md:w-10 md:h-10 ml-1" />
-                            </div>
-                        </div>
-                        <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 text-left z-20">
-                            <div className="flex items-center gap-2 mb-2">
-                                <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                                <p className="text-brand-yellow font-bold text-[10px] md:text-xs uppercase tracking-[0.2em]">Live Dashboard Reveal</p>
-                            </div>
-                            <p className="text-white text-lg md:text-3xl font-black">Watch: How I generated ₹50 Lakhs</p>
-                        </div>
+                        <video
+                            src="/videos/hero-video.mp4"
+                            className="w-full h-full object-cover"
+                            controls
+                            poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+
+                        {/* Overlay elements that disappear when video starts could be added, 
+                            but a standard video tag with 'controls' is best for usability. */}
                     </motion.div>
                 </motion.div>
             </div>
