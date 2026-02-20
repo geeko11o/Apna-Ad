@@ -78,7 +78,7 @@ const Hero = () => {
                             </div>
                         ) : (
                             <video
-                                src="/assets/videos/hero-video.mp4"
+                                src="/video-storage/hero-video.mp4"
                                 className="w-full h-full object-cover"
                                 autoPlay
                                 controls
