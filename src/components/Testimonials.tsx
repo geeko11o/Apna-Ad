@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Section from "./Section";
 import { Star, MessageCircle, PlayCircle } from "lucide-react";
@@ -7,85 +8,106 @@ const testimonials = [
     {
         name: "Rajesh Kumar",
         platform: "iDigitalPreneur",
-        result: "₹1.5L/month in 60 days",
-        text: "Bhai ne mere ads account ko ban hone se bacha liya aur ab main consistently 40-50 leads daily le raha hu. Game changer!",
-        image: "https://i.pravatar.cc/150?u=rajesh",
-        type: "WhatsApp",
+        result: "₹1.5L/month",
+        thumbnail: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+        vimeoId: "56282283",
     },
     {
         name: "Priya Sharma",
         platform: "Bizgurukul",
         result: "₹85k/month",
-        text: "I was scared of Meta Ads. Ab main apne ads khud run karti hu aur DM spam se completely free hu. Thank you so much!",
-        image: "https://i.pravatar.cc/150?u=priya",
-        type: "WhatsApp",
+        thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+        vimeoId: "56282283",
     },
     {
         name: "Vikram Singh",
         platform: "Full-Time Affiliate",
         result: "₹2.3L/month",
-        text: "The closing script alone is worth ₹10k. Main ab 5-6 closings daily kar raha hu. Best investment ever!",
-        image: "https://i.pravatar.cc/150?u=vikram",
-        type: "Video",
+        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+        vimeoId: "56282283",
     },
     {
         name: "Neha Patel",
         platform: "iDigitalPreneur",
         result: "₹1.2L/month",
-        text: "Mujhe lagta tha ads complicated hai. But sir ne itna simple bana diya ki main pehle hi week se results dekhne lagi!",
-        image: "https://i.pravatar.cc/150?u=neha",
-        type: "WhatsApp",
+        thumbnail: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
+        vimeoId: "56282283",
     },
 ];
 
+const VideoCard = ({ t }: { t: any }) => {
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="premium-card p-3 rounded-[2.5rem] border border-white/5 group relative overflow-hidden"
+        >
+            <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-[2rem] overflow-hidden bg-black shadow-2xl">
+                {!isPlaying ? (
+                    <div
+                        className="absolute inset-0 z-10 cursor-pointer"
+                        onClick={() => setIsPlaying(true)}
+                    >
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+
+                        <img
+                            src={t.thumbnail}
+                            alt={t.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+
+                        {/* Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center z-20">
+                            <div className="w-16 h-16 md:w-20 md:h-20 bg-brand-yellow rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(250,204,21,0.4)] group-hover:scale-110 transition-transform">
+                                <PlayCircle className="text-black w-8 h-8 md:w-10 md:h-10" />
+                            </div>
+                        </div>
+
+                        {/* Info */}
+                        <div className="absolute bottom-6 left-6 right-6 z-20">
+                            <div className="flex items-center gap-1.5 mb-2">
+                                {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="#FACC15" className="text-brand-yellow" />)}
+                            </div>
+                            <h4 className="text-xl md:text-2xl font-black text-white font-outfit mb-1">{t.name}</h4>
+                            <div className="flex items-center justify-between">
+                                <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest">{t.platform}</p>
+                                <div className="bg-brand-yellow text-black text-[10px] md:text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest border border-brand-yellow/20">
+                                    {t.result}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <iframe
+                        src={`https://player.vimeo.com/video/${t.vimeoId}?autoplay=1`}
+                        className="absolute top-0 left-0 w-full h-full border-0"
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                    />
+                )}
+            </div>
+        </motion.div>
+    );
+};
+
 const Testimonials = () => {
     return (
-        <Section className="px-4">
-            <div className="text-center mb-16 md:mb-24">
-                <h2 className="text-3xl md:text-7xl font-outfit font-black mb-6 leading-tight">
+        <Section className="px-4 pt-0">
+            <div className="text-center mb-6 md:mb-16">
+                <h2 className="text-2xl md:text-7xl font-outfit font-black mb-6 leading-tight">
                     See What Other <br className="md:hidden" />
                     <span className="text-brand-yellow glow-text">Affiliates Are Achieving...</span>
                 </h2>
-                <p className="text-gray-400 text-base md:text-xl max-w-2xl mx-auto">Real people. Real results. Real transformations.</p>
+                <p className="text-gray-400 text-base md:text-xl max-w-2xl mx-auto italic">"Pehli baar Meta Ads se results aa rahe hain!"</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {testimonials.map((t, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className="premium-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border border-white/5 relative group"
-                    >
-                        <div className="flex justify-between items-start mb-8">
-                            <div className="flex gap-4 md:gap-6">
-                                <div className="w-14 h-14 md:w-20 md:h-20 rounded-2xl overflow-hidden border-2 border-brand-yellow/20 group-hover:border-brand-yellow/50 transition-colors">
-                                    <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
-                                </div>
-                                <div>
-                                    <h4 className="font-black text-lg md:text-2xl font-outfit tracking-tight">{t.name}</h4>
-                                    <p className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">{t.platform}</p>
-                                    <div className="py-1 px-3 bg-brand-yellow/10 text-brand-yellow text-[10px] md:text-xs font-black rounded-lg uppercase tracking-widest border border-brand-yellow/10">
-                                        {t.result}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={`flex items-center gap-1.5 py-1.5 px-3 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider ${t.type === 'WhatsApp' ? 'bg-green-500/10 text-green-500 border border-green-500/10' : 'bg-red-500/10 text-red-500 border border-red-500/10'}`}>
-                                {t.type === 'WhatsApp' ? <MessageCircle size={14} /> : <PlayCircle size={14} />}
-                                {t.type}
-                            </div>
-                        </div>
-
-                        <div className="flex gap-1 mb-6 text-brand-yellow/60">
-                            {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
-                        </div>
-
-                        <p className="text-gray-300 text-base md:text-xl leading-relaxed italic font-medium">
-                            "{t.text}"
-                        </p>
-                    </motion.div>
+                    <VideoCard key={i} t={t} />
                 ))}
             </div>
         </Section>

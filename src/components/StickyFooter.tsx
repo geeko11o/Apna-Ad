@@ -4,31 +4,36 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Gift } from "lucide-react";
 
 const StickyFooter = () => {
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
+    const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const isAnyCtaVisible = entries.some(entry => entry.isIntersecting);
-                setIsVisible(!isAnyCtaVisible);
-            },
-            {
-                threshold: 0, // 1 pixel dikhte hi hide ho jaye
-                rootMargin: "0px 0px -50px 0px" // Thoda pehle hi hide ho jaye taaki smooth lage
-            }
-        );
-
-        const updateObserver = () => {
+        const handleScroll = () => {
+            const currentScroll = window.scrollY;
             const ctaButtons = document.querySelectorAll('.cta-button-trigger');
-            ctaButtons.forEach(btn => observer.observe(btn));
+            let anyButtonVisible = false;
+
+            ctaButtons.forEach(btn => {
+                const rect = btn.getBoundingClientRect();
+                // Check if button is within viewport
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    anyButtonVisible = true;
+                }
+            });
+
+            // Show footer if scrolled 300px+ AND NO main CTA button is visible
+            setIsVisible(currentScroll > 300 && !anyButtonVisible);
         };
 
-        // Give Next.js a moment to mount all components
-        const timer = setTimeout(updateObserver, 500);
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+
+        // Initial check
+        handleScroll();
 
         return () => {
-            clearTimeout(timer);
-            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
         };
     }, []);
 
@@ -40,7 +45,7 @@ const StickyFooter = () => {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 100, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                    className="fixed bottom-0 left-0 w-full z-50 sticky-footer border-t border-brand-yellow/20 px-4 py-3 md:py-5"
+                    className="fixed bottom-0 left-0 w-full z-[100] bg-brand-yellow border-t border-black/5 px-4 py-3 md:py-4 shadow-[0_-10px_40px_rgba(0,0,0,0.15)]"
                 >
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
                         <div className="flex items-center gap-2 md:gap-4 text-black">

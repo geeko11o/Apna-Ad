@@ -35,12 +35,14 @@ const FAQ = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <Section>
-            <div className="text-center mb-16">
+        <Section className="pt-0">
+            <div className="text-center mb-6">
                 <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-4">
                     FAQ & <span className="text-brand-yellow">Risk Reversal</span>
                 </h2>
-                <p className="text-gray-400 text-lg">Got questions? Here are the answers you need.</p>
+                <p className="text-gray-400 text-lg">
+                    Got questions? <br className="md:hidden" /> Here are the answers you need. <span className="text-brand-yellow animate-bounce inline-block">↓</span>
+                </p>
             </div>
 
             <div className="max-w-3xl mx-auto space-y-4">
