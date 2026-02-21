@@ -1,11 +1,22 @@
 "use client";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Button from "./Button";
 import { Play } from "lucide-react";
 
 const Hero = () => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    // Ye isliye taaki animation sirf browser par chale aur crash na ho
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Yahan apni Vimeo Video ID daalein (Jab aapke paas ho)
+    const VIMEO_ID = "56282283"; // Maine ek temporary ID dali hai check karne ke liye
+
+    if (!mounted) return null;
 
     return (
         <section className="relative pt-40 md:pt-64 pb-16 md:pb-32 overflow-hidden px-4">
@@ -22,7 +33,7 @@ const Hero = () => {
                         ✨ Limited Time Offer - 99% OFF!
                     </span>
 
-                    <h1 className="text-3xl md:text-7xl font-outfit font-black leading-[1.1] mb-6 tracking-tight">
+                    <h1 className="text-3xl md:text-7xl font-outfit font-black leading-[1.1] mb-6 tracking-tight text-white">
                         Stop Wasting Time on <br className="hidden md:block" />
                         <span className="text-red-500 relative">Junk Leads!
                             <svg className="absolute -bottom-2 left-0 w-full h-2 md:h-3 text-brand-yellow/40" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -77,14 +88,14 @@ const Hero = () => {
                                 </div>
                             </div>
                         ) : (
-                            <video
-                                src="/video-storage/hero-video.mp4"
-                                className="w-full h-full object-cover"
-                                autoPlay
-                                controls
-                            >
-                                Your browser does not support the video tag.
-                            </video>
+                            <div className="relative w-full h-full">
+                                <iframe
+                                    src={`https://player.vimeo.com/video/${VIMEO_ID}?autoplay=1&title=0&byline=0&portrait=0`}
+                                    className="absolute top-0 left-0 w-full h-full border-0"
+                                    allow="autoplay; fullscreen; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
                         )}
                     </div>
                 </motion.div>
