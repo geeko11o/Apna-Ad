@@ -28,8 +28,8 @@ const problems = [
 
 const ProblemSection = () => {
     return (
-        <Section className="bg-brand-bg-dark rounded-[2rem] md:rounded-[4rem] my-12 px-4 md:px-12 py-16 md:py-24 border border-white/5">
-            <div className="text-center mb-16">
+        <Section className="bg-brand-bg-dark rounded-[2rem] md:rounded-[4rem] mt-4 mb-6 px-4 md:px-12 pt-6 pb-8 md:py-24 border border-white/5">
+            <div className="text-center mb-4">
                 <h2 className="text-3xl md:text-6xl font-outfit font-black mb-6 leading-tight">
                     Is Your Affiliate Business <br className="md:hidden" />
                     <span className="text-red-500">Stuck Here?</span>
@@ -58,7 +58,7 @@ const ProblemSection = () => {
                 ))}
             </div>
 
-            <div className="mt-16 md:mt-24 text-center">
+            <div className="mt-8 md:mt-24 text-center">
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
