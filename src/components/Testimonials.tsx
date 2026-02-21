@@ -42,7 +42,7 @@ const VideoCard = ({ t }: { t: any }) => {
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="premium-card p-3 rounded-[2.5rem] border border-white/5 group relative overflow-hidden"
         >
             <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-[2rem] overflow-hidden bg-black shadow-2xl">
