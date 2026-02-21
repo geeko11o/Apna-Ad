@@ -7,6 +7,7 @@ import FAQ from "@/components/FAQ";
 import Countdown from "@/components/Countdown";
 import StickyFooter from "@/components/StickyFooter";
 import Footer from "@/components/Footer";
+import Counter from "@/components/Counter";
 
 export default function Home() {
     return (
@@ -28,15 +29,21 @@ export default function Home() {
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                         <div className="premium-card p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10 group">
-                            <p className="text-5xl md:text-7xl font-black text-brand-yellow mb-4 tracking-tighter group-hover:scale-110 transition-transform">₹50L+</p>
+                            <p className="text-5xl md:text-7xl font-black text-brand-yellow mb-4 tracking-tighter group-hover:scale-110 transition-transform">
+                                <Counter value={50} prefix="₹" suffix="L+" duration={1} />
+                            </p>
                             <p className="text-gray-500 font-black uppercase text-[10px] md:text-xs tracking-[0.2em] leading-relaxed">In Real Affiliate <br /> Commissions Generated</p>
                         </div>
                         <div className="premium-card p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10 group">
-                            <p className="text-5xl md:text-7xl font-black text-brand-blue mb-4 tracking-tighter group-hover:scale-110 transition-transform">1000+</p>
+                            <p className="text-5xl md:text-7xl font-black text-brand-blue mb-4 tracking-tighter group-hover:scale-110 transition-transform">
+                                <Counter value={1000} suffix="+" duration={1} />
+                            </p>
                             <p className="text-gray-500 font-black uppercase text-[10px] md:text-xs tracking-[0.2em] leading-relaxed">Students Mentored <br /> To Success Locally</p>
                         </div>
                         <div className="premium-card p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10 group">
-                            <p className="text-5xl md:text-7xl font-black text-green-500 mb-4 tracking-tighter group-hover:scale-110 transition-transform">100%</p>
+                            <p className="text-5xl md:text-7xl font-black text-green-500 mb-4 tracking-tighter group-hover:scale-110 transition-transform">
+                                <Counter value={100} suffix="%" duration={1} />
+                            </p>
                             <p className="text-gray-500 font-black uppercase text-[10px] md:text-xs tracking-[0.2em] leading-relaxed">Practical No-Fluff <br /> System Implementation</p>
                         </div>
                     </div>

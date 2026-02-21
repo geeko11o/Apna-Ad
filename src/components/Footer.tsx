@@ -2,7 +2,7 @@ import Section from "./Section";
 
 const Footer = () => {
     return (
-        <footer className="bg-black pt-20 pb-40">
+        <footer className="bg-black pt-10 pb-10">
             <Section className="py-0">
                 <div className="flex flex-col items-center text-center">
                     {/* Logo Recreation */}
